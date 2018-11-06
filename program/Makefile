@@ -1,2 +1,20 @@
-hellomake: toggle.o main.o
-	$(CC) -o run main.o toggle.o
+CC=gcc
+CCFLAGS=-Wall
+LDFLAGS=
+SOURCES=$(wildcard *.c) defines_tic_tac_toe.h
+OBJECTS=$(SOURCES:.c=.o)
+TARGET=run
+
+all: $(TARGET)
+
+$(TARGET): $(OBJECTS)
+	$(CC) -o $@ $^ $(LDFLAGS) 
+
+%.o: %.c %.h
+	$(CC) $(CCFLAGS) -c $<
+
+%.o: %.c
+	$(CC) $(CCFLAGS) -c $<
+
+clean:
+	rm -f *.o $(TARGET)

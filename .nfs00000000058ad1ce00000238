@@ -1,0 +1,12 @@
+#!/bin/bash
+make -C ./program clean      
+make -C ./program                                                             
+./program/run "$@"
+while [ $? -eq 1 ]; do
+	sleep 1s
+	make -C ./program clean
+	make -C ./program
+	./program/run "$@"
+done
+
+#use --silent to silence to output of make.

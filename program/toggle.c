@@ -8,17 +8,22 @@ int size_of_string(char * string, const int max_size);
 int find_definition(FILE *fp, const char * find_string);
 
 //Returns 0 on success. Error handling sucks though.
-int toggle_definition(FILE * fp, const char * definition){ 
-	char buffer_char;
+int toggle_definition(const char *def_file_name, const char * definition){ 
 	char *buffer_text;
 	int length_file;
 	int defined = 1;
 	int start_of_line = -1;
-	int counter = 0;
+	
+	//Open file
+	FILE *fp = fopen(def_file_name, "r+");
+	if(fp == NULL){
+		fprintf(stderr, "Could not open the file with definitions.\n");
+		return 1;
+	}
 	
 	//Find the definition
 	if(find_definition(fp, definition) != 0){
-		fprintf(stderr, "Couldn't find a definition, defines.h might be broken!\n");
+		fprintf(stderr, "Couldn't find a definition, the definitions file might be broken!\n");
 		return -1;
 	}
 	
@@ -64,12 +69,16 @@ int toggle_definition(FILE * fp, const char * definition){
 		fread(buffer_text+start_of_line+2, 1, length_file-(start_of_line-2), fp);
 	}
 
-	//Write it to our defines.h.
+	//Write it to our defines file.
 	fclose(fp);
-	fp = fopen("./program/defines.h", "w");
+	fp = fopen(def_file_name, "w");
+	if(fp == NULL){
+		fprintf(stderr, "Could not open the file with definitions.\n");
+		return 1;
+	}
 	fwrite(buffer_text, 1, length_file, fp);
+	
 	fclose(fp);
-	fp = fopen("./program/defines.h", "r+");
 	
 	free(buffer_text);
 	

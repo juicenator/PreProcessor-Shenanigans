@@ -10,4 +10,4 @@ int size_of_string(char * string, const int max_size);
 int find_definition(FILE *fp, const char * find_string);
 
 //Returns 0 on success. Error handling sucks though.
-int toggle_definition(FILE * fp, const char * definition);
+int toggle_definition(const char *def_file_name, const char * definition);
