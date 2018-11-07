@@ -9,5 +9,9 @@ int size_of_string(char * string, const int max_size);
 //fp will be at the start of the line of this definition.
 int find_definition(FILE *fp, const char * find_string);
 
+//set_to = 1. Turn the definition on
+//set_to = 0. Turn the definition off
+int set_definition(const char *def_file_name, const char * definition, int set_to);
+
 //Returns 0 on success. Error handling sucks though.
 int toggle_definition(const char *def_file_name, const char * definition);
