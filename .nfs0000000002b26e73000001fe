@@ -1,5 +1,5 @@
 #!/bin/bash
-cp -T ./program/defines_tic_tac_toe_start.h ./program/defines_tic_tac_toe.h
+cp program/defines_tic_tac_toe_start.h program/defines_tic_tac_toe.h -f
 make -C ./program clean  --silent
 make -C ./program         --silent                                          
 ./program/run "$@"
