@@ -1,10 +1,10 @@
 # PreProcessor-Shenanigans
-Change to state of the program by changing the definitions!
+Change to state of the program by changing the preprocessor definitions!
 
 This is so stupid...
 
 
-Be aware that only after restarting your program the defines will have changed!
+Be aware that only after restarting your program the definitions will have changed!
 
 Implemented the start of a Tic Tac Toe game.
 
